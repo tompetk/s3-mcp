@@ -45,6 +45,28 @@ Write tools refuse with a clear error unless `S3_ALLOW_WRITE=true` (or `--allow-
 
 A bare `--stdio` arg is accepted and ignored (drop-in compatible with configs written for `s3-mcp-server`).
 
+### npx straight from GitHub
+
+```json
+{
+  "mcpServers": {
+    "s3": {
+      "command": "npx",
+      "args": ["-y", "github:tompetk/s3-mcp"],
+      "env": {
+        "S3_ENDPOINT": "https://rustfs.example.com",
+        "S3_ACCESS_KEY_ID": "<key>",
+        "S3_SECRET_ACCESS_KEY": "<secret>",
+        "S3_REGION": "us-east-1",
+        "S3_ALLOW_SELF_SIGNED": "true"
+      }
+    }
+  }
+}
+```
+
+Keep `-y`: without it npx asks for install confirmation on stdin, which is the MCP transport, so the server never starts. The first run takes roughly 40 seconds because npm installs TypeScript and runs the `prepare` build; later runs use the npx cache. The published npm package ships prebuilt `dist/`, so `["-y", "s3-mcp"]` starts instantly.
+
 ### From source
 
 ```bash
