@@ -1,0 +1,53 @@
+{
+  "name": "s3-mcp",
+  "version": "1.0.0",
+  "description": "Minimal Model Context Protocol server for S3-compatible storage (AWS S3, RustFS, MinIO, Cloudflare R2, etc.), with opt-in self-signed / custom-CA TLS trust.",
+  "type": "module",
+  "bin": {
+    "s3-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "smoke": "tsx scripts/smoke.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "mcp",
+    "s3",
+    "rustfs",
+    "minio",
+    "r2",
+    "model-context-protocol"
+  ],
+  "author": "Tomas Petkevicius",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tompetk/s3-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tompetk/s3-mcp/issues"
+  },
+  "homepage": "https://github.com/tompetk/s3-mcp#readme",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.955.0",
+    "@modelcontextprotocol/sdk": "^1.25.1",
+    "@smithy/node-http-handler": "^4.1.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
